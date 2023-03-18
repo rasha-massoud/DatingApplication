@@ -22,8 +22,8 @@ body {
 .rightContent {
     border-radius: 5%;
     border: 1.75px solid rgba(59, 75, 250, 0.51);
-    margin: 14vh 1% auto 1%;
-    height: 72vh;
+    margin: 12vh 1% auto 1%;
+    height: 76vh;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -35,7 +35,7 @@ body {
 
 .registrationData {
     display: flex;
-    margin: 2% 4% auto 4%;
+    margin: 1% 4% auto 4%;
     flex-direction: column;
 }
 
@@ -59,7 +59,7 @@ body {
     height: 100%;
     background-color: rgb(40, 40, 249);
     color: white;
-    border-radius: 80% 10%;
+    border-radius: 65% 15%;
 }
 
 .btn2{
