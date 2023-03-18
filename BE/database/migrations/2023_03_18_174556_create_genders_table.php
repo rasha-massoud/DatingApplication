@@ -15,7 +15,7 @@ return new class extends Migration
         if (!Schema::hasTable('genders')) {
             Schema::create('genders', function (Blueprint $table) {
                 $table->id();
-                $table->tinyInteger("gender");
+                $table->text("gender");
                 $table->timestamps();
             });
         }

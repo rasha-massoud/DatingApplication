@@ -19,10 +19,8 @@ return new class extends Migration
             $table->string('msg');
             $table->timestamps();
             $table->foreign("conversation_id")->references("id")->on("conversations")->onDelete("cascade");
-
             $table->foreign("sender_id")->references("id")->on("users")->onDelete("cascade");
             $table->foreign("recipient_id")->references("id")->on("users")->onDelete("cascade");
- 
         });
     }
 

@@ -25,10 +25,7 @@ return new class extends Migration
                 $table->date("dob");
                 $table->timestamps();
 
-                $table->dropPrimary('id'); 
                 $table->foreign("gender_id")->references("id")->on("genders")->onDelete("cascade");
-                $table->primary('id'); 
-
             });
         }
     }
