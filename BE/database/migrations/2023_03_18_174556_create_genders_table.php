@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-
         if (!Schema::hasTable('genders')) {
             Schema::create('genders', function (Blueprint $table) {
                 $table->id();
