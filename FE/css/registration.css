@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.registrationForm {
+    display: flex;
+    flex-direction: row;
+}
+
+.leftContent {
+    flex: 1;
+}
+
+.leftContent img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.rightContent {
+    border-radius: 5%;
+    border: 1.75px solid rgba(59, 75, 250, 0.51);
+    margin: 14vh 1% auto 1%;
+    height: 72vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.formTitle {
+    text-align: center;
+}
+
+.registrationData {
+    display: flex;
+    margin: 2% 4% auto 4%;
+    flex-direction: column;
+}
+
+.inputData{
+    margin-bottom: 1.5%;
+}
+
+.buttons {
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height:1.75rem;
+    gap:2rem;
+}
+
+.btn1{
+    width:30%;
+    height: 100%;
+    background-color: rgb(40, 40, 249);
+    color: white;
+    border-radius: 80% 10%;
+}
+
+.btn2{
+    width:30%;
+    height: 100%;
+    background-color: rgb(196, 196, 255);
+    color: black;
+    border-radius: 80% 10%;
+}
+
+.btn1:hover, .btn2:hover{
+    cursor: pointer;
+}
