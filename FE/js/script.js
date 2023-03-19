@@ -87,7 +87,6 @@ workshop_pages.load_registration = async () => {
 
 workshop_pages.load_login = async () => {
     document.getElementById("submit").addEventListener("click", () => {
-
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
@@ -95,17 +94,21 @@ workshop_pages.load_login = async () => {
         loginformData.append('email', email);
         loginformData.append('password', password);
 
-        const get_logins_url = workshop_pages.base_url ;
+        const get_logins_url = workshop_pages.base_url;
         workshop_pages.postAPI(get_logins_url, loginformData)
-        .then((response) => {
-            localStorage.setItem('token', response.data.authorisation.token);
-            console.log(response.data);
-            if(response.data.status == "success"){
-                window.location.href='/FE/navigate.html';
-            }
-        })
-        .catch(error => {
-            console.error(error);
-        });
+            .then((response) => {
+                localStorage.setItem('token', response.data.authorisation.token);
+                console.log(response.data);
+                if (response.data.status == "success") {
+                    window.location.href = '/FE/navigate.html';
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
     });
+}
+
+workshop_pages.load_profile = async () => {
+    
 }
