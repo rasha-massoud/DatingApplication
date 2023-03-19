@@ -62,20 +62,19 @@ class AuthController extends Controller
         if ($email_exists > 0) {
             $response['status'] = "failed";
         } else {
-            DB::table('genders')->insert([
-                'gender' => $request->gender_id
-            ]);
-            DB::table('users')->insert([
-                'name' => $request->name,
-                'phone_number' => $request->phone_number,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'dob' => $request->dob,
-                'gender_id' => $request->gender_id,
-                'location' => $request->location,
-                'biography' => $request->biography,
-                'profile' => $request->profile
-            ]);
+            $user= new User;
+
+            $user->name = $request->name;
+            $user->phone_number = $request->phone_number;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->dob = $request->dob;
+            $user->gender_id = $request->gender_id;
+            $user->location = $request->location;
+            $user->biography = $request->biography;
+            $user->profile = $request->profile;
+
+            $user->save();
             $response['status'] = "success";
         }
 
