@@ -22,8 +22,8 @@ body {
 .rightContent {
     border-radius: 5%;
     border: 1.75px solid rgba(59, 75, 250, 0.51);
-    margin: 18vh 1% auto 1%;
-    height: 64vh;
+    margin: 20vh 1% auto 1%;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     flex: 1;
