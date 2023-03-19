@@ -43,8 +43,9 @@ workshop_pages.load_registration = async () => {
         const gender_id = document.getElementById("gender_id").value;
         const location = document.getElementById("location").value;
         const biography = document.getElementById("biography").value;
+        const profile = document.getElementById("profile").value;
 
-        const isValidated = checkEntries(name, email, password, confirmPassword, phone_number, location, biography);
+        const isValidated = checkEntries(name, email, password, confirmPassword, phone_number, location, biography, profile);
         if (isValidated) {
             const registrationformData = new FormData();
             registrationformData.append('name', name);
@@ -55,6 +56,7 @@ workshop_pages.load_registration = async () => {
             registrationformData.append('gender_id', gender_id);
             registrationformData.append('location', location);
             registrationformData.append('biography', biography);
+            registrationformData.append('profile', profile);
 
             workshop_pages.postAPI(get_users_url, registrationformData)
                 .then(response)
@@ -64,8 +66,8 @@ workshop_pages.load_registration = async () => {
         }
     });
 
-    const checkEntries = (name, email, password, confirmPassword, phone_number, location, biography) => {
-        if (!(name && email && password && confirmPassword && phone_number && location && biography)) {
+    const checkEntries = (name, email, password, confirmPassword, phone_number, location, biography, profile) => {
+        if (!(name && email && password && confirmPassword && phone_number && location && biography && profile)) {
             return false;
         }
 

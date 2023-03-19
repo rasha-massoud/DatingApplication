@@ -19,6 +19,7 @@ class UserController extends Controller
         $gender_id = $request->gender_id;
         $location = $request->location;
         $biography = $request->biography;
+        $profile = $request->profile;
 
         $response=[];
 
@@ -49,7 +50,10 @@ class UserController extends Controller
             if ($email_exists > 0) {
                 $response['status'] = "failed";
             } else {
-                DB::table('users')->insert([
+                DB::table('genders')->insert([
+                    'gender' => $gender_id
+                ]);
+                DB::table('registeredusers')->insert([
                     'name' => $name,
                     'phone_number' => $phone_number,
                     'email' => $email,
@@ -57,7 +61,8 @@ class UserController extends Controller
                     'dob' => $dob,
                     'gender_id' => $gender_id,
                     'location' => $location,
-                    'biography' => $biography
+                    'biography' => $biography,
+                    'profile' => $profile
                 ]);
                 $response['status'] = "success";
             }
