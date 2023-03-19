@@ -13,4 +13,7 @@ Route::group(["prefix" => "v0.0.0"], function(){
         Route::post('/logout',[AuthController:: class, "logout"]);
         Route::post('/refresh',[AuthController:: class, "refresh"]);
     });
+    Route::group(["middleware" => ["auth:api"]], function(){
+        Route::get('/users',[UserController:: class, "getAllUsers"]);
+    });
 });

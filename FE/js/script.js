@@ -17,7 +17,7 @@ workshop_pages.postAPI = async (api_url, api_data, api_token = null) => {
             api_data,
             {
                 headers: {
-                    'Authorization': "token " + api_token
+                    'Authorization': "Bearer " + api_token
                 }
             }
         )
@@ -128,8 +128,8 @@ workshop_pages.load_edit = async () => {
             editformData.append('location', location);
             editformData.append('biography', biography);
             editformData.append('profile', profile);
-
-            workshop_pages.postAPI(get_edit_url, editformData)
+            const api_token=localStorage.getItem('token');
+            workshop_pages.postAPI(get_edit_url, editformData,api_token)
                 .then(response)
                 .catch(error => {
                     console.error(error);
