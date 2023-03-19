@@ -51,10 +51,13 @@ class UserController extends Controller
             } else {
                 DB::table('users')->insert([
                     'name' => $name,
+                    'phone_number' => $phone_number,
                     'email' => $email,
                     'password' => $hashed_password,
                     'dob' => $dob,
-                    'user_type_id' => $user_type_id
+                    'gender_id' => $gender_id,
+                    'location' => $location,
+                    'biography' => $biography
                 ]);
                 $response['status'] = "success";
             }
