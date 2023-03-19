@@ -69,4 +69,30 @@ class UserController extends Controller
         }
         return response()->json($response);    
     }
+
+    function login(Request $request){
+        $email = $request->email;
+        $password = $request->password;
+
+        $checkEmail=DB::table("registeredusers")->select('id', 'gender_id', 'name','email', 'password', 'phone_number', 'biography', 'profile', 'location', 'dob')
+                                                ->where('email','=', $email)
+                                                ->first();
+        $response=[];
+
+        if($checkEmail){
+            if (Hash::check($password, $checkEmail->password)){
+                //JWT
+                $response['status'] = 'CORRECT password';
+
+            }
+            else{
+                $response['status'] = 'Incorrect password';
+            }
+        } 
+        else {
+            $response['status'] = 'user not found';
+        }
+
+        return response()->json($response);    
+    }
 }
