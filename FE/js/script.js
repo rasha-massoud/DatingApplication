@@ -109,6 +109,44 @@ workshop_pages.load_login = async () => {
     });
 }
 
-workshop_pages.load_profile = async () => {
-    
+workshop_pages.load_edit = async () => {
+    const get_edit_url = workshop_pages.base_url + "edit";
+
+    document.getElementById("submit").addEventListener("click", () => {
+        const phone_number = document.getElementById("phone_number").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const location = document.getElementById("location").value;
+        const biography = document.getElementById("biography").value;
+        const profile = document.getElementById("profile").value;
+
+        const isValidated = checkEntries(password, confirmPassword, phone_number, location, biography, profile);
+        if (isValidated) {
+            const editformData = new FormData();
+            editformData.append('phone_number', phone_number);
+            editformData.append('password', password);
+            editformData.append('location', location);
+            editformData.append('biography', biography);
+            editformData.append('profile', profile);
+
+            workshop_pages.postAPI(get_edit_url, editformData)
+                .then(response)
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    });
+
+    const checkEntries = (password, confirmPassword, phone_number, location, biography, profile) => {
+        if (!(password && confirmPassword && phone_number && location && biography && profile)) {
+            return false;
+        }
+        else if (password != confirmPassword) {
+            return false;
+        }
+        else {
+            const decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+            return password.match(decimal) ? true : false;
+        }
+    }
 }
