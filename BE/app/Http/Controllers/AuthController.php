@@ -2,7 +2,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -38,29 +40,50 @@ class AuthController extends Controller
                     'type' => 'bearer',
                 ]
             ]);
-
     }
 
     public function register(Request $request){
+        
         $request->validate([
             'name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:8|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/',
+            'dob' => 'required|date',
+            'gender_id' => 'required|integer',
+            'location' => 'required|string|max:255',
+            'biography' => 'required|string',
+            'profile' => 'required|string',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $response=[];
 
-        $token = Auth::login($user);
+        $email_exists = DB::table('users')->where('email', '=', $request->email)->exists();
+        if ($email_exists > 0) {
+            $response['status'] = "failed";
+        } else {
+            DB::table('genders')->insert([
+                'gender' => $request->gender_id
+            ]);
+            DB::table('users')->insert([
+                'name' => $request->name,
+                'phone_number' => $request->phone_number,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'dob' => $request->dob,
+                'gender_id' => $request->gender_id,
+                'location' => $request->location,
+                'biography' => $request->biography,
+                'profile' => $request->profile
+            ]);
+            $response['status'] = "success";
+        }
+
         return response()->json([
-            'status' => 'success',
-            'message' => 'User created successfully',
-            'user' => $user,
+            'status' => $response['status'],
+            'message' => $response['status'] === "success" ? 'User created successfully' : 'User creation failed',
             'authorisation' => [
-                'token' => $token,
+                'token' => $response['status'] === "success" ? auth()->guard('api')->login(User::where('email', $request->email)->first()) : null,
                 'type' => 'bearer',
             ]
         ]);
