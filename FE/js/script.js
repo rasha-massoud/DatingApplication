@@ -91,13 +91,19 @@ workshop_pages.load_login = async () => {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        let loginformData = new FormData();
+        const loginformData = new FormData();
         loginformData.append('email', email);
         loginformData.append('password', password);
 
         const get_logins_url = workshop_pages.base_url ;
         workshop_pages.postAPI(get_logins_url, loginformData)
-        .then(response)
+        .then((response) => {
+            localStorage.setItem('token', response.data.authorisation.token);
+            console.log(response.data);
+            if(response.data.status == "success"){
+                window.location.href='/FE/navigate.html';
+            }
+        })
         .catch(error => {
             console.error(error);
         });
