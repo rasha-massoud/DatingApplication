@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     function edit(Request $request){
+        $email = $request->email;
         $phone_number = $request->phone_number;
         $password = $request->password;
         $location = $request->location;
@@ -28,19 +29,20 @@ class UserController extends Controller
         }
     
         if($response['password_status']){
-            $email_exists = DB::table('registeredusers')->where('email', '=', $email)->exists();
-            $hashed_password = Hash::make($password);
-            if ($email_exists > 0) {
-                $response['status'] = "failed";
-            } else {
-                DB::table('registeredusers')->insert([
-                    'phone_number' => $phone_number,
-                    'password' => $hashed_password,
-                    'location' => $location,
-                    'biography' => $biography,
-                    'profile' => $profile
-                ]);
+            $email_exists = User::where('email', $request->email)->first();
+            if ($email_exists) {
+                $user = User::where('email', $email)->first();
+                $user->email = $request->email;
+                $user->phone_number = $phone_number;
+                $user->password = Hash::make($password);
+                $user->location = $location;
+                $user->biography = $biography;
+                $user->profile = $profile;
+                $user->save();
+                
                 $response['status'] = "success";
+            } else {
+                $response['status'] = "failed";
             }
         }
         return response()->json($response);    

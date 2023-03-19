@@ -15,5 +15,6 @@ Route::group(["prefix" => "v0.0.0"], function(){
     });
     Route::group(["middleware" => ["auth:api"]], function(){
         Route::get('/users',[UserController:: class, "getAllUsers"]);
+        Route::post('/edit',[UserController:: class, "edit"]);
     });
 });
