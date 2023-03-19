@@ -1,6 +1,6 @@
 const workshop_pages = {};
 
-workshop_pages.base_url = "http://127.0.0.1:8000/";
+workshop_pages.base_url = "http://127.0.0.1:8000/api/v0.0.0/user/";
 
 workshop_pages.getAPI = async (api_url) => {
     try {
@@ -31,7 +31,7 @@ workshop_pages.loadFor = (page) => {
 }
 
 workshop_pages.load_registration = async () => {
-    const get_users_url = workshop_pages.base_url + "api/registration";
+    const get_users_url = workshop_pages.base_url + "registration";
 
     document.getElementById("submit").addEventListener("click", () => {
         const name = document.getElementById("name").value;
