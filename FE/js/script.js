@@ -84,3 +84,19 @@ workshop_pages.load_registration = async () => {
         }
     }
 }
+
+workshop_pages.load_login = async () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    let loginformData = new FormData();
+    loginformData.append('email', email);
+    loginformData.append('password', password);
+
+    const get_logins_url = workshop_pages.base_url + "login";
+    workshop_pages.postAPI(get_logins_url, loginformData)
+    .then(response)
+    .catch(error => {
+        console.error(error);
+    });
+}
