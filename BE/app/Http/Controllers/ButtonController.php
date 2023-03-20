@@ -18,15 +18,22 @@ class ButtonController extends Controller
         $blocked_user_id = $request->blocked_user_id;
         
         $response=[];
+        $condition = Block::where('user_id', $request->user_id)
+                            ->where('blocked_user_id', $request->blocked_user_id)->first();
 
-        $block= new Block;
+        if($condition){
+            $response['status'] = "fails";
+        }
+        else{
+            $block= new Block;
 
-        $block->user_id = $request->user_id;
-        $block->blocked_user_id = $request->blocked_user_id;
+            $block->user_id = $request->user_id;
+            $block->blocked_user_id = $request->blocked_user_id;
+    
+            $block->save();
+            $response['status'] = "success";
+        }
 
-        $block->save();
-        $response['status'] = "success";
-        
         return response()->json([
             'status' => $response['status']
         ]);   
