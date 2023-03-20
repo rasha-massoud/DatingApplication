@@ -107,7 +107,6 @@ a:visited {
     border-radius: 80% 10%;
 }
 
-
 .ItemsRowsGrouping {
     background-color: white;
     display: flex;
@@ -129,58 +128,4 @@ a:visited {
     height: 100%;
     object-fit: cover;
     background-color: white;
-}
-
-.Choices {
-    margin-right: 10%;;
-    display: none;
-}
-
-.Items:hover .Choices {
-    display: block;
-}
-
-.Choices a {
-    position: absolute;
-}
-
-.Choices a:hover {
-    color: red;
-}
-
-.cartButton {
-    background: rgba(191, 164, 164, 0.559);
-    display: none;
-    cursor: pointer;
-}
-
-.Items:hover .cartButton {
-    display: block;
-}
-
-.cartButton button {
-    position: absolute;
-    cursor: pointer;
-}
-
-.cartButton button:hover {
-    background: grey;
-}
-
-.Data {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    font-size: 1mh;
-    text-align: center;
-}
-
-.Likes {
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-}
-
-.Likes i {
-    color: gold;
 }

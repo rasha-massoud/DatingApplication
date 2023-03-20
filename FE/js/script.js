@@ -192,3 +192,42 @@ workshop_pages.load_filter = async () => {
             });
     });
 }
+
+workshop_pages.load_search = async () => {
+    document.getElementById("search").addEventListener("click", () => {
+        const name = document.getElementById("name").value;
+
+        const searchformData = new FormData();
+        searchformData.append('name', name);
+
+        const get_search_url = workshop_pages.base_url + "search";
+        const api_token=localStorage.getItem('token');
+
+        const categories = document.getElementById("ItemsRowsGrouping")
+
+        workshop_pages.postAPI(get_search_url, searchformData, api_token)
+            .then((response) => {
+                const users = response.data;
+                users.forEach(user => {
+                    const html = `
+                    <div class="ItemsRowsGrouping">
+                        <div class="Items">
+                            <img src="${user.profile}" id="imageGet"/>
+                            <h2 id="nameGet">${user.name}</h2>
+                            <h2 id="emailGet">${user.email}</h2>
+                            <h2 id="phoneNumberGet">${user.phone_number}</h2>
+                            <h2 id="biographyGet">${user.biography}</h2>
+                            <h2 id="locationGet">${user.location}</h2>
+                            <h2 id="dobGet">${user.dob}</h2>
+                        </div>
+                    </div>
+                    `;
+                    categories.insertAdjacentHTML("beforeend", html);
+
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+}

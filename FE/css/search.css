@@ -135,3 +135,26 @@ a:visited {
     color: black;
     border-radius: 80% 10%;
 }
+
+.ItemsRowsGrouping {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap:wrap;
+}
+
+.Items {
+    width: 280px;
+    margin: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Items img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: white;
+}
