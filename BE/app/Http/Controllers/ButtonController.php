@@ -19,7 +19,8 @@ class ButtonController extends Controller
         
         $response=[];
         $condition = Block::where('user_id', $request->user_id)
-                            ->where('blocked_user_id', $request->blocked_user_id)->first();
+                            ->where('blocked_user_id', $request->blocked_user_id)
+                            ->first();
 
         if($condition){
             $response['status'] = "fails";
@@ -44,14 +45,22 @@ class ButtonController extends Controller
         $favorite_user_id = $request->favorite_user_id;
         
         $response=[];
+        $condition = Favorite::where('user_id', $request->user_id)
+                            ->where('favorite_user_id', $request->favorite_user_id)
+                            ->first();
 
-        $favorite= new Favorite;
+        if($condition){
+            $response['status'] = "fails";
+        }
+        else{
+            $favorite= new Favorite;
 
-        $favorite->user_id = $request->user_id;
-        $favorite->favorite_user_id = $request->favorite_user_id;
+            $favorite->user_id = $request->user_id;
+            $favorite->favorite_user_id = $request->favorite_user_id;
 
-        $favorite->save();
-        $response['status'] = "success";
+            $favorite->save();
+            $response['status'] = "success";
+        }
         
         return response()->json([
             'status' => $response['status']
