@@ -1,11 +1,10 @@
 body {
-    background-image: url("/FE/images/Background.webp");
+    background-image: url("/datingApp/FE/images/Background.webp");
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0;
     padding: 0;
 }
-
 
 .registrationForm {
     display: flex;
@@ -37,7 +36,6 @@ body {
 .navOptions ul {
     width: 100%;
     list-style: none;
-    border: 2px solid white;
     display: flex;
     justify-content: space-around;
     justify-items: center;
