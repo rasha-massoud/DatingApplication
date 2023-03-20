@@ -7,7 +7,6 @@ body {
     padding: 0;
 }
 
-
 .registrationForm{
     display: flex;
     flex-direction: column;
@@ -24,6 +23,7 @@ body {
 }
 
 .navTitle{
+    padding-left: 2%;
     text-align: center;
     margin: auto auto auto 0;
     font-size:2em;
