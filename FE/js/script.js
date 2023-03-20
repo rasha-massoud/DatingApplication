@@ -235,7 +235,9 @@ workshop_pages.load_navigate = async () => {
 }
 
 workshop_pages.load_filter = async () => {
-    document.getElementById("submit").addEventListener("click", () => {
+    document.getElementById("filter").addEventListener("click", () => {
+        const categories = document.getElementById("ItemsRowsGrouping")
+
         const category = document.getElementById("category").value;
         const filter_search = document.getElementById("filter_search").value;
 
@@ -243,45 +245,71 @@ workshop_pages.load_filter = async () => {
         filterformData.append('category', category);
         filterformData.append('filter_search', filter_search);
 
-        const get_search_url = workshop_pages.base_url + "filter";
+        const get_filter_url = workshop_pages.base_url + "filter";
         const api_token = localStorage.getItem('token');
 
-        const categories = document.getElementById("ItemsRowsGrouping")
-
-        workshop_pages.postAPI(get_search_url, filterformData, api_token)
+        workshop_pages.postAPI(get_filter_url, filterformData, api_token)
             .then((response) => {
-                const users = response.data;
+                const users = response.data.users;
                 users.forEach(user => {
                     const html = `
                     <div class="ItemsRowsGrouping">
                         <div class="Items">
                             <img src="${user.profile}" id="imageGet"/>
-                            <h2 id="nameGet">${user.name}</h2>
-                            <h2 id="emailGet">${user.email}</h2>
-                            <h2 id="phoneNumberGet">${user.phone_number}</h2>
-                            <h2 id="biographyGet">${user.biography}</h2>
-                            <h2 id="locationGet">${user.location}</h2>
-                            <h2 id="dobGet">${user.dob}</h2>
-                            <button class="acceptButtons" id=${user.id}>Accept</button>
+                            <h3 class="rowData" id="nameGet">${user.name}</h3>
+                            <h3 class="rowData" id="emailGet">${user.email}</h3>
+                            <h3 class="rowData" id="phoneNumberGet">${user.phone_number}</h3>
+                            <h3 class="rowData" id="biographyGet">${user.biography}</h3>
+                            <h3 class="rowData" id="locationGet">${user.location}</h3>
+                            <h3 class="rowData" id="dobGet">${user.dob}</h3>
+                            <button class="acceptButtons" id=${user.id}>A<br>C<br>C<br>E<br>P<br>T</button>
+                            <button class="blockButtons" id=${user.id}>B<br>L<br>O<br>C<br>K</button>
                         </div>
                     </div>
                     `;
                     categories.insertAdjacentHTML("beforeend", html);
+                });
+                const acceptButtonsArray = document.querySelectorAll(".acceptButtons");
+                acceptButtonsArray.forEach(button => {
+                    button.addEventListener("click", function (e) {
+                        const user_id = localStorage.getItem('user_id');
+                        const acceptformData = new FormData();
+                        acceptformData.append('user_id', user_id);
+                        acceptformData.append('favorite_user_id', e.target.id);
+                        const api_token = localStorage.getItem('token');
 
+                        const get_accept_url = workshop_pages.base_url + "accept";
+
+                        workshop_pages.postAPI(get_accept_url, acceptformData, api_token)
+                            .then(response)
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    });
+                });
+
+                const blockButtonsArray = document.querySelectorAll(".blockButtons");
+                blockButtonsArray.forEach(button => {
+                    button.addEventListener("click", function (e) {
+                        const user_id = localStorage.getItem('user_id');
+                        const blockformData = new FormData();
+                        blockformData.append('user_id', user_id);
+                        blockformData.append('blocked_user_id', e.target.id);
+                        const api_token = localStorage.getItem('token');
+
+                        const get_block_url = workshop_pages.base_url + "block";
+
+                        workshop_pages.postAPI(get_block_url, blockformData, api_token)
+                            .then(response)
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    });
                 });
             })
             .catch(error => {
                 console.error(error);
             });
-
-        // const accptBUTNARRAY = document.querySelectorAll(".acceptButtons");
-        // accptBUTNARRAY.forEach(butnnnn => {
-        //     butnnnn.addEventListener("click", function = (e) => {
-        //         console.log(e.target.id);
-        //         e.target.id ;
-        //         //TO BE SEND TO THE BACKEND LA SHOUF LA MEEN SEWA ACCEPT 
-        //     });
-        // });
     });
 }
 
