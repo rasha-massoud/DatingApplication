@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ButtonController;
 
 Route::group(["prefix" => "v0.0.0"], function(){
     Route::post('/register',[AuthController:: class, "register"]);
@@ -18,5 +19,7 @@ Route::group(["prefix" => "v0.0.0"], function(){
         Route::post('/edit',[UserController:: class, "edit"]);
         Route::post('/filter',[SearchController:: class, "filter"]);
         Route::post('/search',[SearchController:: class, "search"]);
+        Route::post('/accept',[ButtonController:: class, "accept"]);
+        Route::post('/block',[ButtonController:: class, "block"]);
     });
 });

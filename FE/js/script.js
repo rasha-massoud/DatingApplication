@@ -187,8 +187,6 @@ workshop_pages.load_navigate = async () => {
                     </div>
                     `;
                     categories.insertAdjacentHTML("beforeend", html);
-
-
                 });
                 const acceptButtonsArray = document.querySelectorAll(".acceptButtons");
                 acceptButtonsArray.forEach(button => {
