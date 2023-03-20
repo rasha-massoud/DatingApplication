@@ -86,20 +86,20 @@ workshop_pages.load_registration = async () => {
 }
 
 workshop_pages.load_login = async () => {
-    document.getElementById("submit").addEventListener("click", () => {
+    document.getElementById("login").addEventListener("click", () => {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-
         const loginformData = new FormData();
         loginformData.append('email', email);
         loginformData.append('password', password);
 
-        const get_logins_url = workshop_pages.base_url;
+        const get_logins_url = workshop_pages.base_url + "login";
         workshop_pages.postAPI(get_logins_url, loginformData)
             .then((response) => {
                 localStorage.setItem('token', response.data.authorisation.token);
+                console.log(response);
                 if (response.data.status == "success") {
-                    window.location.href = '/FE/navigate.html';
+                    window.location.href = '/datingApp/FE/navigate.html';
                 }
             })
             .catch(error => {
@@ -129,7 +129,7 @@ workshop_pages.load_edit = async () => {
             editformData.append('location', location);
             editformData.append('biography', biography);
             editformData.append('profile', profile);
-            const api_token=localStorage.getItem('token');
+            const api_token = localStorage.getItem('token');
             workshop_pages.postAPI(get_edit_url, editformData, api_token)
                 .then(response)
                 .catch(error => {
@@ -162,7 +162,7 @@ workshop_pages.load_filter = async () => {
         filterformData.append('filter_search', filter_search);
 
         const get_search_url = workshop_pages.base_url + "filter";
-        const api_token=localStorage.getItem('token');
+        const api_token = localStorage.getItem('token');
 
         const categories = document.getElementById("ItemsRowsGrouping")
 
@@ -180,6 +180,7 @@ workshop_pages.load_filter = async () => {
                             <h2 id="biographyGet">${user.biography}</h2>
                             <h2 id="locationGet">${user.location}</h2>
                             <h2 id="dobGet">${user.dob}</h2>
+                            <button class="acceptButtons" id=${user.id}>Accept</button>
                         </div>
                     </div>
                     `;
@@ -190,6 +191,15 @@ workshop_pages.load_filter = async () => {
             .catch(error => {
                 console.error(error);
             });
+
+        const accptBUTNARRAY = document.querySelectorAll(".acceptButtons");
+        accptBUTNARRAY.forEach(butnnnn => {
+            butnnnn.addEventListener("click", function = (e) => {
+                console.log(e.target.id);
+                e.target.id ;
+                //TO BE SEND TO THE BACKEND LA SHOUF LA MEEN SEWA ACCEPT 
+            });
+        });
     });
 }
 
@@ -201,7 +211,7 @@ workshop_pages.load_search = async () => {
         searchformData.append('name', name);
 
         const get_search_url = workshop_pages.base_url + "search";
-        const api_token=localStorage.getItem('token');
+        const api_token = localStorage.getItem('token');
 
         const categories = document.getElementById("ItemsRowsGrouping")
 

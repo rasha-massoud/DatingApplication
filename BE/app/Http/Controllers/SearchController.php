@@ -14,7 +14,7 @@ class SearchController extends Controller
         $category = $request->category;
         $filter_search = $request->filter_search;
         
-        $users= User::where("$category", "=", "$filter_search")->get();
+        $users= User::where($category, $filter_search)->get();
         return response()->json([
             "users" => $users
         ]);    

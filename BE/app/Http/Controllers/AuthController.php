@@ -58,26 +58,21 @@ class AuthController extends Controller
 
         $response=[];
 
-        $email_exists = DB::table('users')->where('email', '=', $request->email)->exists();
-        if ($email_exists > 0) {
-            $response['status'] = "failed";
-        } else {
-            $user= new User;
+        $user= new User;
 
-            $user->name = $request->name;
-            $user->phone_number = $request->phone_number;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->dob = $request->dob;
-            $user->gender_id = $request->gender_id;
-            $user->location = $request->location;
-            $user->biography = $request->biography;
-            $user->profile = $request->profile;
+        $user->name = $request->name;
+        $user->phone_number = $request->phone_number;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->dob = $request->dob;
+        $user->gender_id = $request->gender_id;
+        $user->location = $request->location;
+        $user->biography = $request->biography;
+        $user->profile = $request->profile;
 
-            $user->save();
-            $response['status'] = "success";
-        }
-
+        $user->save();
+        $response['status'] = "success";
+        
         return response()->json([
             'status' => $response['status'],
             'message' => $response['status'] === "success" ? 'User created successfully' : 'User creation failed',

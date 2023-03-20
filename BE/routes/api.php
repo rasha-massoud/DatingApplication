@@ -8,7 +8,7 @@ use App\Http\Controllers\AuthController;
 
 Route::group(["prefix" => "v0.0.0"], function(){
     Route::post('/register',[AuthController:: class, "register"]);
-    Route::post('/',[AuthController:: class, "login"]);
+    Route::post('/login',[AuthController:: class, "login"]);
     Route::post('/logout',[AuthController:: class, "logout"]);
     Route::post('/refresh',[AuthController:: class, "refresh"]);
     
