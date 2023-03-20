@@ -19,4 +19,11 @@ class SearchController extends Controller
             "users" => $users
         ]);    
     }
+
+    function search(Request $request){
+        $user = User::where('name', $request->name)->first();
+        return response()->json([
+            "users" => $user
+        ]);
+    }
 }
