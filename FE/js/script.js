@@ -98,7 +98,6 @@ workshop_pages.load_login = async () => {
         workshop_pages.postAPI(get_logins_url, loginformData)
             .then((response) => {
                 localStorage.setItem('token', response.data.authorisation.token);
-                console.log(response.data);
                 if (response.data.status == "success") {
                     window.location.href = '/FE/navigate.html';
                 }
@@ -151,4 +150,26 @@ workshop_pages.load_edit = async () => {
             return password.match(decimal) ? true : false;
         }
     }
+}
+
+workshop_pages.load_filter = async () => {
+    document.getElementById("submit").addEventListener("click", () => {
+        const category = document.getElementById("category").value;
+        const filter_search = document.getElementById("filter_search").value;
+
+        const filterformData = new FormData();
+        filterformData.append('category', category);
+        filterformData.append('filter_search', filter_search);
+
+        const get_search_url = workshop_pages.base_url + "search";
+        const api_token=localStorage.getItem('token');
+
+        workshop_pages.postAPI(get_search_url, filterformData, api_token)
+            .then((response) => {
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
 }
