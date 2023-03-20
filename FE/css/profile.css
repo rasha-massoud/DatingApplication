@@ -1,11 +1,11 @@
 body {
+    font-family: Arial, sans-serif;
     background-image: url("/datingApp/FE/images/Background.webp");
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0;
     padding: 0;
 }
-
 
 .registrationForm {
     display: flex;
@@ -44,6 +44,10 @@ body {
 
 .navOptions li {
     font-size: larger;
+}
+
+input{
+    border-radius: 8%;
 }
 
 .navOptions li:hover {

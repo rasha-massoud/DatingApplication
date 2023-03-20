@@ -1,4 +1,5 @@
 body {
+    font-family: Arial, sans-serif;
     background-image: url("/datingApp/FE/images/Background.webp");
     background-size: cover;
     background-repeat: no-repeat;
@@ -52,6 +53,10 @@ body {
 a,
 a:visited {
     color: inherit;
+}
+
+input{
+    border-radius: 8%;
 }
 
 .formTitle {

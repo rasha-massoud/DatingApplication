@@ -1,4 +1,5 @@
 body {
+    font-family: Arial, sans-serif;
     background-image: url("/datingApp/FE/images/Background.webp");
     background-size: cover;
     background-repeat: no-repeat;
@@ -49,6 +50,10 @@ body {
 .navOptions li:hover {
     background-color: rgba(96, 96, 96, 0.915);
     border-radius: 0px 50px;
+}
+
+input{
+    border-radius: 8%;
 }
 
 .optionData {

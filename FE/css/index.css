@@ -1,4 +1,5 @@
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -44,6 +45,10 @@ body {
 
 .formTitle {
     text-align: center;
+}
+
+input{
+    border-radius: 8%;
 }
 
 .registrationData {
