@@ -100,3 +100,32 @@ a:visited {
     flex-direction: column;
     justify-content: space-around;
 }
+
+
+.ItemsRowsGrouping {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap:wrap;
+}
+
+.rowData {
+    width: 40%;
+    font-size: 1rem;
+    background-color: white;
+}
+
+.Items {
+    /* width: 280px; */
+    margin: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Items img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: white;
+}

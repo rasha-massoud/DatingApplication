@@ -2,9 +2,16 @@ const workshop_pages = {};
 
 workshop_pages.base_url = "http://127.0.0.1:8000/api/v0.0.0/";
 
-workshop_pages.getAPI = async (api_url) => {
+workshop_pages.getAPI = async (api_url, api_token = null) => {
     try {
-        return await axios(api_url);
+        return await axios(
+            api_url,
+            {
+                headers: {
+                    'Authorization': "Bearer " + api_token
+                }
+            }
+        );
     } catch (error) {
         console.log("Error from GET API");
     }
@@ -149,6 +156,50 @@ workshop_pages.load_edit = async () => {
             const decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
             return password.match(decimal) ? true : false;
         }
+    }
+}
+
+workshop_pages.load_navigate = async () => {
+
+    window.onload = function () {
+        const categories = document.getElementById("ItemsRowsGrouping")
+
+        const get_users_url = workshop_pages.base_url + "users";
+        const api_token = localStorage.getItem('token');
+
+        workshop_pages.getAPI(get_users_url, api_token)
+            .then((response) => {
+                const users = response.data.users;
+                users.forEach(user => {
+                    const html = `
+                    <div class="ItemsRowsGrouping">
+                        <div class="Items">
+                            <img class="rowData" src="${user.profile}" id="imageGet"/>
+                            <h2 class="rowData" id="nameGet">${user.name}</h2>
+                            <h2 class="rowData" id="emailGet">${user.email}</h2>
+                            <h2 class="rowData" id="phoneNumberGet">${user.phone_number}</h2>
+                            <h2 class="rowData" id="biographyGet">${user.biography}</h2>
+                            <h2 class="rowData" id="locationGet">${user.location}</h2>
+                            <h2 class="rowData" id="dobGet">${user.dob}</h2>
+                            <button class="acceptButtons" id=${user.id}>Accept</button>
+                        </div>
+                    </div>
+                    `;
+                    categories.insertAdjacentHTML("beforeend", html);
+
+
+                });
+                const buttonsArray = document.querySelectorAll(".acceptButtons");
+                buttonsArray.forEach(button => {
+                    button.addEventListener("click", function(e) {
+                        console.log(e.target.id);
+                        e.target.id;
+                    });
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 }
 
