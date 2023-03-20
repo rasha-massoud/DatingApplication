@@ -192,14 +192,14 @@ workshop_pages.load_filter = async () => {
                 console.error(error);
             });
 
-        const accptBUTNARRAY = document.querySelectorAll(".acceptButtons");
-        accptBUTNARRAY.forEach(butnnnn => {
-            butnnnn.addEventListener("click", function = (e) => {
-                console.log(e.target.id);
-                e.target.id ;
-                //TO BE SEND TO THE BACKEND LA SHOUF LA MEEN SEWA ACCEPT 
-            });
-        });
+        // const accptBUTNARRAY = document.querySelectorAll(".acceptButtons");
+        // accptBUTNARRAY.forEach(butnnnn => {
+        //     butnnnn.addEventListener("click", function = (e) => {
+        //         console.log(e.target.id);
+        //         e.target.id ;
+        //         //TO BE SEND TO THE BACKEND LA SHOUF LA MEEN SEWA ACCEPT 
+        //     });
+        // });
     });
 }
 
