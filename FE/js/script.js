@@ -103,6 +103,7 @@ workshop_pages.load_login = async () => {
         const get_logins_url = workshop_pages.base_url + "login";
         workshop_pages.postAPI(get_logins_url, loginformData)
             .then((response) => {
+                localStorage.setItem('user_id', response.data.user.id);
                 localStorage.setItem('token', response.data.authorisation.token);
                 console.log(response);
                 if (response.data.status == "success") {
@@ -188,18 +189,31 @@ workshop_pages.load_navigate = async () => {
                     `;
                     categories.insertAdjacentHTML("beforeend", html);
                 });
+
                 const acceptButtonsArray = document.querySelectorAll(".acceptButtons");
                 acceptButtonsArray.forEach(button => {
-                    button.addEventListener("click", function(e) {
+                    button.addEventListener("click", function (e) {
                         console.log(e.target.id);
                         e.target.id;
                     });
                 });
+
                 const blockButtonsArray = document.querySelectorAll(".blockButtons");
                 blockButtonsArray.forEach(button => {
-                    button.addEventListener("click", function(e) {
-                        console.log(e.target.id);
-                        e.target.id;
+                    button.addEventListener("click", function (e) {
+                        const user_id = localStorage.getItem('user_id');
+                        const blockformData = new FormData();
+                        blockformData.append('user_id', user_id);
+                        blockformData.append('blocked_user_id', e.target.id);
+                        const api_token = localStorage.getItem('token');
+
+                        const get_block_url = workshop_pages.base_url + "block";
+
+                        workshop_pages.postAPI(get_block_url, blockformData, api_token)
+                            .then(response)
+                            .catch(error => {
+                                console.error(error);
+                            });
                     });
                 });
             })
