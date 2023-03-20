@@ -51,35 +51,6 @@ body {
     background-color: rgba(167, 167, 167, 0.915);
     border-radius: 0px 50px;
 }
-
-.optionData {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.optionDataTitle {
-    display: flex;
-    justify-content: center;
-}
-
-.colDisplay {
-    display: flex;
-    flex-direction: column;
-}
-
-.rowDisplay {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.rowData {
-    width: 40%;
-    font-size: 1rem;
-    background-color: #BCBCBC;
-}
-
 a,
 a:visited {
     color: inherit;
@@ -117,21 +88,99 @@ a:visited {
     justify-content: center;
     align-items: center;
     text-align: center;
-    height:1.75rem;
-    gap:2rem;
+    height: 1.75rem;
+    gap: 2rem;
 }
 
-.btn1{
-    width:30%;
+.btn1 {
+    width: 30%;
     height: 100%;
     background-color: rgba(255, 71, 203, 0.911);
     border-radius: 65% 15%;
 }
 
-.btn2{
-    width:30%;
+.btn2 {
+    width: 30%;
     height: 100%;
     background-color: rgb(196, 196, 255);
     color: black;
     border-radius: 80% 10%;
+}
+
+
+.ItemsRowsGrouping {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap:wrap;
+}
+
+.Items {
+    width: 280px;
+    margin: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Items img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: white;
+}
+
+.Choices {
+    margin-right: 10%;;
+    display: none;
+}
+
+.Items:hover .Choices {
+    display: block;
+}
+
+.Choices a {
+    position: absolute;
+}
+
+.Choices a:hover {
+    color: red;
+}
+
+.cartButton {
+    background: rgba(191, 164, 164, 0.559);
+    display: none;
+    cursor: pointer;
+}
+
+.Items:hover .cartButton {
+    display: block;
+}
+
+.cartButton button {
+    position: absolute;
+    cursor: pointer;
+}
+
+.cartButton button:hover {
+    background: grey;
+}
+
+.Data {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    font-size: 1mh;
+    text-align: center;
+}
+
+.Likes {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.Likes i {
+    color: gold;
 }
