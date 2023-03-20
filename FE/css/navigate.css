@@ -129,3 +129,15 @@ a:visited {
     object-fit: cover;
     background-color: white;
 }
+
+.acceptButtons{
+    background-color: rgba(255, 71, 203, 0.911);
+    border-radius: 65% 15%;
+    color:white
+}
+
+.blockButtons{
+    background-color: rgb(196, 196, 255);
+    color: black;
+    border-radius: 80% 10%;
+}

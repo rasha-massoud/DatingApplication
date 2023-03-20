@@ -174,14 +174,15 @@ workshop_pages.load_navigate = async () => {
                     const html = `
                     <div class="ItemsRowsGrouping">
                         <div class="Items">
-                            <img class="rowData" src="${user.profile}" id="imageGet"/>
-                            <h2 class="rowData" id="nameGet">${user.name}</h2>
-                            <h2 class="rowData" id="emailGet">${user.email}</h2>
-                            <h2 class="rowData" id="phoneNumberGet">${user.phone_number}</h2>
-                            <h2 class="rowData" id="biographyGet">${user.biography}</h2>
-                            <h2 class="rowData" id="locationGet">${user.location}</h2>
-                            <h2 class="rowData" id="dobGet">${user.dob}</h2>
-                            <button class="acceptButtons" id=${user.id}>Accept</button>
+                            <img src="${user.profile}" id="imageGet"/>
+                            <h3 class="rowData" id="nameGet">${user.name}</h3>
+                            <h3 class="rowData" id="emailGet">${user.email}</h3>
+                            <h3 class="rowData" id="phoneNumberGet">${user.phone_number}</h3>
+                            <h3 class="rowData" id="biographyGet">${user.biography}</h3>
+                            <h3 class="rowData" id="locationGet">${user.location}</h3>
+                            <h3 class="rowData" id="dobGet">${user.dob}</h3>
+                            <button class="acceptButtons" id=${user.id}>A<br>C<br>C<br>E<br>P<br>T</button>
+                            <button class="blockButtons" id=${user.id}>B<br>L<br>O<br>C<br>K</button>
                         </div>
                     </div>
                     `;
@@ -189,8 +190,15 @@ workshop_pages.load_navigate = async () => {
 
 
                 });
-                const buttonsArray = document.querySelectorAll(".acceptButtons");
-                buttonsArray.forEach(button => {
+                const acceptButtonsArray = document.querySelectorAll(".acceptButtons");
+                acceptButtonsArray.forEach(button => {
+                    button.addEventListener("click", function(e) {
+                        console.log(e.target.id);
+                        e.target.id;
+                    });
+                });
+                const blockButtonsArray = document.querySelectorAll(".blockButtons");
+                blockButtonsArray.forEach(button => {
                     button.addEventListener("click", function(e) {
                         console.log(e.target.id);
                         e.target.id;
