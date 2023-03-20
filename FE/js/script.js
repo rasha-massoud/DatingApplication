@@ -327,24 +327,37 @@ workshop_pages.load_search = async () => {
 
         workshop_pages.postAPI(get_search_url, searchformData, api_token)
             .then((response) => {
-                const users = response.data;
-                users.forEach(user => {
+                const user = response.data.users;
+                if (user == null) {
                     const html = `
                     <div class="ItemsRowsGrouping">
                         <div class="Items">
-                            <img src="${user.profile}" id="imageGet"/>
-                            <h2 id="nameGet">${user.name}</h2>
-                            <h2 id="emailGet">${user.email}</h2>
-                            <h2 id="phoneNumberGet">${user.phone_number}</h2>
-                            <h2 id="biographyGet">${user.biography}</h2>
-                            <h2 id="locationGet">${user.location}</h2>
-                            <h2 id="dobGet">${user.dob}</h2>
+                            <h2 class="rowData">User not found!</h2>
                         </div>
                     </div>
                     `;
                     categories.insertAdjacentHTML("beforeend", html);
 
-                });
+                }
+                else {
+                    const html = `
+                    < div class="ItemsRowsGrouping" >
+                        <div class="Items">
+                            <img src="${user.profile}" id="imageGet" />
+                            <h2 class="rowData" id="nameGet">${user.name}</h2>
+                            <h2 class="rowData" id="emailGet">${user.email}</h2>
+                            <h2 class="rowData" id="phoneNumberGet">${user.phone_number}</h2>
+                            <h2 class="rowData" id="biographyGet">${user.biography}</h2>
+                            <h2 class="rowData" id="locationGet">${user.location}</h2>
+                            <h2 class="rowData" id="dobGet">${user.dob}</h2>
+                        </div>
+                    </div >
+                    `;
+                    categories.insertAdjacentHTML("beforeend", html);
+
+                }
+
+
             })
             .catch(error => {
                 console.error(error);
