@@ -9,7 +9,7 @@
     <title>Filter Search!</title>
 </head>
 
-<body> 
+<body>
     <nav class="navBar">
         <div class="navTitle">BLING Bling!</div>
         <div class="navOptions">
@@ -28,16 +28,24 @@
     <div class="registrationForm">
         <div class="registrationData">
             <h1 class="formTitle">Filter Search</h1>
+
+            <label for="category" class="inputData">Category</label>
+            <select name="category" class="inputData1" id="category" required>
+                <option value="gender_id">Gender</option>
+                <option value="dob">Day Of Birth</option>
+                <option value="location">Location</option>
+            </select>
+
             <label for="filter_search" class="inputData">Filter Search</label>
             <input type="text" name="filter_search" class="inputData1" id="filter_search" placeholder="female"
                 required="required">
 
-                <div class="buttons">
-                    <button class="btn1" id="submit">Seach</button>
-                    <button class="btn2" onclick="window.location.href='/FE/navigate.html'">Cancel</button>
-                </div>
+            <div class="buttons">
+                <button class="btn1" id="submit">Seach</button>
+                <button class="btn2" onclick="window.location.href='/FE/navigate.html'">Cancel</button>
             </div>
         </div>
+    </div>
     </div>
     <script src="/FE/js/axios.min.js"></script>
     <script src="/FE/js/script.js" type="text/javascript"></script>
