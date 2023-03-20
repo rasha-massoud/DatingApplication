@@ -193,8 +193,19 @@ workshop_pages.load_navigate = async () => {
                 const acceptButtonsArray = document.querySelectorAll(".acceptButtons");
                 acceptButtonsArray.forEach(button => {
                     button.addEventListener("click", function (e) {
-                        console.log(e.target.id);
-                        e.target.id;
+                        const user_id = localStorage.getItem('user_id');
+                        const acceptformData = new FormData();
+                        acceptformData.append('user_id', user_id);
+                        acceptformData.append('favorite_user_id', e.target.id);
+                        const api_token = localStorage.getItem('token');
+
+                        const get_accept_url = workshop_pages.base_url + "accept";
+
+                        workshop_pages.postAPI(get_accept_url, acceptformData, api_token)
+                            .then(response)
+                            .catch(error => {
+                                console.error(error);
+                            });
                     });
                 });
 
