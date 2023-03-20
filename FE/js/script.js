@@ -1,6 +1,6 @@
 const workshop_pages = {};
 
-workshop_pages.base_url = "http://127.0.0.1:8000/api/v0.0.0/user/";
+workshop_pages.base_url = "http://127.0.0.1:8000/api/v0.0.0/";
 
 workshop_pages.getAPI = async (api_url) => {
     try {
@@ -113,6 +113,7 @@ workshop_pages.load_edit = async () => {
     const get_edit_url = workshop_pages.base_url + "edit";
 
     document.getElementById("submit").addEventListener("click", () => {
+        const email = document.getElementById("email").value;
         const phone_number = document.getElementById("phone_number").value;
         const password = document.getElementById("password").value;
         const confirmPassword = document.getElementById("confirmPassword").value;
@@ -120,16 +121,17 @@ workshop_pages.load_edit = async () => {
         const biography = document.getElementById("biography").value;
         const profile = document.getElementById("profile").value;
 
-        const isValidated = checkEntries(password, confirmPassword, phone_number, location, biography, profile);
+        const isValidated = checkEntries(email, password, confirmPassword, phone_number, location, biography, profile);
         if (isValidated) {
             const editformData = new FormData();
+            editformData.append('email', email);
             editformData.append('phone_number', phone_number);
             editformData.append('password', password);
             editformData.append('location', location);
             editformData.append('biography', biography);
             editformData.append('profile', profile);
             const api_token=localStorage.getItem('token');
-            workshop_pages.postAPI(get_edit_url, editformData,api_token)
+            workshop_pages.postAPI(get_edit_url, editformData, api_token)
                 .then(response)
                 .catch(error => {
                     console.error(error);
@@ -137,8 +139,8 @@ workshop_pages.load_edit = async () => {
         }
     });
 
-    const checkEntries = (password, confirmPassword, phone_number, location, biography, profile) => {
-        if (!(password && confirmPassword && phone_number && location && biography && profile)) {
+    const checkEntries = (email, password, confirmPassword, phone_number, location, biography, profile) => {
+        if (!(email && password && confirmPassword && phone_number && location && biography && profile)) {
             return false;
         }
         else if (password != confirmPassword) {
