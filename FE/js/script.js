@@ -105,6 +105,7 @@ workshop_pages.load_login = async () => {
             .then((response) => {
                 localStorage.setItem('user_id', response.data.user.id);
                 localStorage.setItem('token', response.data.authorisation.token);
+                localStorage.setItem('gender_id', response.data.user.gender_id);
                 console.log(response);
                 if (response.data.status == "success") {
                     window.location.href = '/datingApp/FE/navigate.html';
@@ -168,7 +169,12 @@ workshop_pages.load_navigate = async () => {
         const get_users_url = workshop_pages.base_url + "users";
         const api_token = localStorage.getItem('token');
 
-        workshop_pages.getAPI(get_users_url, api_token)
+        const navigateformData = new FormData();
+        const gender_id = localStorage.getItem('gender_id');
+
+        navigateformData.append('gender_id', gender_id)
+        
+        workshop_pages.postAPI(get_users_url, navigateformData, api_token)
             .then((response) => {
                 const users = response.data.users;
                 users.forEach(user => {
