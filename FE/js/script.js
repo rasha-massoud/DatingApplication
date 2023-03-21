@@ -173,7 +173,7 @@ workshop_pages.load_navigate = async () => {
         const gender_id = localStorage.getItem('gender_id');
 
         navigateformData.append('gender_id', gender_id)
-        
+
         workshop_pages.postAPI(get_users_url, navigateformData, api_token)
             .then((response) => {
                 const users = response.data.users;
@@ -393,7 +393,7 @@ workshop_pages.load_profile = async () => {
     });
 }
 
-workshop_pages.load_favorites = async () => { 
+workshop_pages.load_favorites = async () => {
     window.onload = function () {
         const categories = document.getElementById("ItemsRowsGrouping")
 
@@ -406,16 +406,19 @@ workshop_pages.load_favorites = async () => {
 
         workshop_pages.postAPI(get_favoriteList_url, favListformData, api_token)
             .then((response) => {
-                const favorites = response.data.favorites;
+                const favorites = response.data.favoriteUsers;
                 favorites.forEach(favorite => {
                     const html = `
-                    <div class="ItemsRowsGrouping">
                         <div class="Items">
-                            <h3 class="rowData" id="biographyGet">${favorite.user_id}</h3>
-                            <h3 class="rowData" id="locationGet">${favorite.favorite_user_id}</h3>
+                            <img src="${favorite.profile}" id="imageGet" />
+                            <h2 class="rowData" id="nameGet">${favorite.name}</h2>
+                            <h2 class="rowData" id="emailGet">${favorite.email}</h2>
+                            <h2 class="rowData" id="phoneNumberGet">${favorite.phone_number}</h2>
+                            <h2 class="rowData" id="biographyGet">${favorite.biography}</h2>
+                            <h2 class="rowData" id="locationGet">${favorite.location}</h2>
+                            <h2 class="rowData" id="dobGet">${favorite.dob}</h2>
                         </div>
-                    </div>
-                    `;
+                `;
                     categories.insertAdjacentHTML("beforeend", html);
                 });
             })
@@ -425,7 +428,7 @@ workshop_pages.load_favorites = async () => {
     }
 }
 
-workshop_pages.load_blocks = async () => { 
+workshop_pages.load_blocks = async () => {
     window.onload = function () {
         const categories = document.getElementById("ItemsRowsGrouping")
 

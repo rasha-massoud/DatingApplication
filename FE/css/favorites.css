@@ -96,7 +96,6 @@ a:visited {
 }
 
 .ItemsRowsGrouping {
-    background-color: white;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -107,7 +106,6 @@ a:visited {
 .rowData {
     width: 40%;
     font-size: 1rem;
-    background-color: white;
 }
 
 .Items {
