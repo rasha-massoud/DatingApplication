@@ -441,16 +441,19 @@ workshop_pages.load_blocks = async () => {
 
         workshop_pages.postAPI(get_blockList_url, blockListformData, api_token)
             .then((response) => {
-                const blocks = response.data.favorites;
+                const blocks = response.data.blockedUsers;
                 blocks.forEach(block => {
                     const html = `
-                    <div class="ItemsRowsGrouping">
-                        <div class="Items">
-                            <h3 class="rowData" id="biographyGet">${block.user_id}</h3>
-                            <h3 class="rowData" id="locationGet">${block.favorite_user_id}</h3>
-                        </div>
+                    <div class="Items">
+                        <img src="${block.profile}" id="imageGet" />
+                        <h2 class="rowData" id="nameGet">${block.name}</h2>
+                        <h2 class="rowData" id="emailGet">${block.email}</h2>
+                        <h2 class="rowData" id="phoneNumberGet">${block.phone_number}</h2>
+                        <h2 class="rowData" id="biographyGet">${block.biography}</h2>
+                        <h2 class="rowData" id="locationGet">${block.location}</h2>
+                        <h2 class="rowData" id="dobGet">${block.dob}</h2>
                     </div>
-                    `;
+                    `;  
                     categories.insertAdjacentHTML("beforeend", html);
                 });
             })

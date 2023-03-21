@@ -82,7 +82,6 @@ input{
 .rowData {
     width: 40%;
     font-size: 1rem;
-    background-color: #BCBCBC;
 }
 
 a,
@@ -99,4 +98,24 @@ a:visited {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.ItemsRowsGrouping {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap:wrap;
+}
+
+.rowData {
+    width: 40%;
+    font-size: 1rem;
+}
+
+.Items {
+    /* width: 280px; */
+    margin: 2%;
+    display: flex;
+    justify-content: space-between;
 }
