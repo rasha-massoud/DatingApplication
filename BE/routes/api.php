@@ -16,7 +16,7 @@ Route::group(["prefix" => "v0.0.0"], function(){
     Route::post('/refresh',[AuthController:: class, "refresh"]);
     
     Route::group(["middleware" => ["auth:api"]], function(){
-        Route::get('/users',[UserController:: class, "getAllUsers"]);
+        Route::post('/users',[UserController:: class, "getAllUsers"]);
         Route::post('/edit',[UserController:: class, "edit"]);
         Route::post('/profile',[UserController:: class, "profile"]);
 

@@ -49,8 +49,8 @@ class UserController extends Controller
         return response()->json($response);    
     }
 
-    function getAllUsers(){
-        $users = User::all();
+    function getAllUsers(Request $request){
+        $users = User::where('gender_id','!=', $request->gender_id)->get();
         return response()->json([
             "users" => $users
         ]);
