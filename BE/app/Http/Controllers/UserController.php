@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\RecoverPassword;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -85,22 +87,20 @@ class UserController extends Controller
 
     function recover(Request $request){
         $user_id = $request->user_id;
-        $optional_profile1 = $request->optional_profile1;
-        $optional_profile2 = $request->optional_profile2;
-        $optional_profile3 = $request->optional_profile3;
+        $hobby = $request->hobby;
+        $dog = $request->dog;
         $response=[];
 
-        $userProfiles_exists = profile::where('user_id', $request->user_id)->first();
-        if ($userProfiles_exists){
-            $profile= profile::where('user_id', $user_id)->first();
+        $user_exists = RecoverPassword::where('user_id', $request->user_id)->first();
+        if ($user_exists){
+            $profile= RecoverPassword::where('user_id', $user_id)->first();
         }
         else{
-            $profile= new profile;
+            $profile= new RecoverPassword;
         }
         $profile->user_id = $request->user_id;
-        $profile->optional_profile1 = $request->optional_profile1;
-        $profile->optional_profile2 = $request->optional_profile2;
-        $profile->optional_profile3 = $request->optional_profile3;
+        $profile->hobby = $request->hobby;
+        $profile->dog = $request->dog;
 
         $profile->save();
         $response['status'] = "success";
