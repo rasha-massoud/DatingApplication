@@ -360,3 +360,29 @@ workshop_pages.load_search = async () => {
             });
     });
 }
+
+workshop_pages.load_profile = async () => {
+    const get_profile_url = workshop_pages.base_url + "profile";
+
+    document.getElementById("update").addEventListener("click", () => {
+        const optional_profile1 = document.getElementById("optional_profile1").value;
+        const optional_profile2 = document.getElementById("optional_profile2").value;
+        const optional_profile3 = document.getElementById("optional_profile3").value;
+
+        const profileformData = new FormData();
+        const user_id = localStorage.getItem('user_id');
+
+        profileformData.append('user_id', user_id);
+        profileformData.append('optional_profile1', optional_profile1);
+        profileformData.append('optional_profile2', optional_profile2);
+        profileformData.append('optional_profile3', optional_profile3);
+
+        const api_token = localStorage.getItem('token');
+
+        workshop_pages.postAPI(get_profile_url, profileformData, api_token)
+            .then(response)
+            .catch(error => {
+                console.error(error);
+            });
+    });
+}
