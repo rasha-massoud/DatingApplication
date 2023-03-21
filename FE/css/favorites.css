@@ -79,12 +79,6 @@ input{
     align-items: center;
 }
 
-.rowData {
-    width: 40%;
-    font-size: 1rem;
-    background-color: #BCBCBC;
-}
-
 a,
 a:visited {
     color: inherit;

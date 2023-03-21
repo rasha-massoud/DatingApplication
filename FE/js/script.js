@@ -396,18 +396,17 @@ workshop_pages.load_favorites = async () => {
 
         const favListformData = new FormData();
         const user_id = localStorage.getItem('user_id');
-        profileformData.append('user_id', user_id);
+        favListformData.append('user_id', user_id);
 
         workshop_pages.postAPI(get_favoriteList_url, favListformData, api_token)
             .then((response) => {
-                const users = response.data.favorites;
-                users.forEach(user => {
+                const favorites = response.data.favorites;
+                favorites.forEach(favorite => {
                     const html = `
                     <div class="ItemsRowsGrouping">
                         <div class="Items">
-                            <h3 class="rowData" id="biographyGet">${user.biography}</h3>
-                            <h3 class="rowData" id="locationGet">${user.location}</h3>
-                            <h3 class="rowData" id="dobGet">${user.dob}</h3>
+                            <h3 class="rowData" id="biographyGet">${favorite.user_id}</h3>
+                            <h3 class="rowData" id="locationGet">${favorite.favorite_user_id}</h3>
                         </div>
                     </div>
                     `;
@@ -420,3 +419,34 @@ workshop_pages.load_favorites = async () => {
     }
 }
 
+workshop_pages.load_blocks = async () => { 
+    window.onload = function () {
+        const categories = document.getElementById("ItemsRowsGrouping")
+
+        const get_blockList_url = workshop_pages.base_url + "blockList";
+        const api_token = localStorage.getItem('token');
+
+        const blockListformData = new FormData();
+        const user_id = localStorage.getItem('user_id');
+        blockListformData.append('user_id', user_id);
+
+        workshop_pages.postAPI(get_blockList_url, blockListformData, api_token)
+            .then((response) => {
+                const blocks = response.data.favorites;
+                blocks.forEach(block => {
+                    const html = `
+                    <div class="ItemsRowsGrouping">
+                        <div class="Items">
+                            <h3 class="rowData" id="biographyGet">${block.user_id}</h3>
+                            <h3 class="rowData" id="locationGet">${block.favorite_user_id}</h3>
+                        </div>
+                    </div>
+                    `;
+                    categories.insertAdjacentHTML("beforeend", html);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+}
