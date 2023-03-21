@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Block;
 use App\Models\Favorite;
+use App\Models\Profile;
 
 class ButtonController extends Controller
 {
@@ -64,6 +65,29 @@ class ButtonController extends Controller
         
         return response()->json([
             'status' => $response['status']
+        ]);   
+    }
+
+    function optionalProfile(Request $request){
+        $user_id = $request->user_id;
+        
+        $response=[];
+        $condition = Profile::where('user_id', $request->user_id)->first();
+
+        if($condition){
+            $condition = Profile::where('user_id', $request->user_id)->get();
+            $response['status'] = "success";
+            $response['profileData'] = $condition;
+        }
+        else{
+            $response['status'] = "fails";
+            $response['profileData'] = "No Additional Profiles";
+        }
+        
+        return response()->json([
+            'status' => $response['status'],
+            'profileData' => $response['profileData']
+
         ]);   
     }
 }
