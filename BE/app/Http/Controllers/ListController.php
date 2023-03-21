@@ -10,5 +10,17 @@ use App\Models\Favorite;
 
 class ListController extends Controller
 {
-    //
+    function blocklist(){
+        $blocks = Block::all();
+        return response()->json([
+            "blocks" => $blocks
+        ]);
+    }
+
+    function favoriteList(){
+        $favorites = Favorite::all();
+        return response()->json([
+            "favorites" => $favorites
+        ]);
+    }
 }
