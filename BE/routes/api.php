@@ -19,6 +19,7 @@ Route::group(["prefix" => "v0.0.0"], function(){
         Route::post('/users',[UserController:: class, "getAllUsers"]);
         Route::post('/edit',[UserController:: class, "edit"]);
         Route::post('/profile',[UserController:: class, "profile"]);
+        Route::post('/recover',[UserController:: class, "recover"]);        
 
         Route::post('/filter',[SearchController:: class, "filter"]);
         Route::post('/search',[SearchController:: class, "search"]);

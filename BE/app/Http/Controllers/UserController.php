@@ -82,4 +82,31 @@ class UserController extends Controller
             'status' => $response['status']
         ]);   
     }
+
+    function recover(Request $request){
+        $user_id = $request->user_id;
+        $optional_profile1 = $request->optional_profile1;
+        $optional_profile2 = $request->optional_profile2;
+        $optional_profile3 = $request->optional_profile3;
+        $response=[];
+
+        $userProfiles_exists = profile::where('user_id', $request->user_id)->first();
+        if ($userProfiles_exists){
+            $profile= profile::where('user_id', $user_id)->first();
+        }
+        else{
+            $profile= new profile;
+        }
+        $profile->user_id = $request->user_id;
+        $profile->optional_profile1 = $request->optional_profile1;
+        $profile->optional_profile2 = $request->optional_profile2;
+        $profile->optional_profile3 = $request->optional_profile3;
+
+        $profile->save();
+        $response['status'] = "success";
+
+        return response()->json([
+            'status' => $response['status']
+        ]);   
+    }
 }
