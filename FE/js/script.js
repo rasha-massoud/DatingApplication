@@ -453,7 +453,7 @@ workshop_pages.load_blocks = async () => {
                         <h2 class="rowData" id="locationGet">${block.location}</h2>
                         <h2 class="rowData" id="dobGet">${block.dob}</h2>
                     </div>
-                    `;  
+                    `;
                     categories.insertAdjacentHTML("beforeend", html);
                 });
             })
