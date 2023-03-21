@@ -346,17 +346,15 @@ workshop_pages.load_search = async () => {
                 }
                 else {
                     const html = `
-                    < div class="ItemsRowsGrouping" >
-                        <div class="Items">
-                            <img src="${user.profile}" id="imageGet" />
-                            <h2 class="rowData" id="nameGet">${user.name}</h2>
-                            <h2 class="rowData" id="emailGet">${user.email}</h2>
-                            <h2 class="rowData" id="phoneNumberGet">${user.phone_number}</h2>
-                            <h2 class="rowData" id="biographyGet">${user.biography}</h2>
-                            <h2 class="rowData" id="locationGet">${user.location}</h2>
-                            <h2 class="rowData" id="dobGet">${user.dob}</h2>
-                        </div>
-                    </div >
+                    <div class="Items">
+                        <img src="${user.profile}" id="imageGet" />
+                        <h2 class="rowData" id="nameGet">${user.name}</h2>
+                        <h2 class="rowData" id="emailGet">${user.email}</h2>
+                        <h2 class="rowData" id="phoneNumberGet">${user.phone_number}</h2>
+                        <h2 class="rowData" id="biographyGet">${user.biography}</h2>
+                        <h2 class="rowData" id="locationGet">${user.location}</h2>
+                        <h2 class="rowData" id="dobGet">${user.dob}</h2>
+                    </div>
                     `;
                     categories.insertAdjacentHTML("beforeend", html);
                 }
