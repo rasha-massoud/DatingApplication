@@ -337,7 +337,6 @@ workshop_pages.load_search = async () => {
                     </div>
                     `;
                     categories.insertAdjacentHTML("beforeend", html);
-
                 }
                 else {
                     const html = `
@@ -354,10 +353,7 @@ workshop_pages.load_search = async () => {
                     </div >
                     `;
                     categories.insertAdjacentHTML("beforeend", html);
-
                 }
-
-
             })
             .catch(error => {
                 console.error(error);

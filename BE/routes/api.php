@@ -17,8 +17,11 @@ Route::group(["prefix" => "v0.0.0"], function(){
     Route::group(["middleware" => ["auth:api"]], function(){
         Route::get('/users',[UserController:: class, "getAllUsers"]);
         Route::post('/edit',[UserController:: class, "edit"]);
+        Route::post('/profile',[UserController:: class, "profile"]);
+
         Route::post('/filter',[SearchController:: class, "filter"]);
         Route::post('/search',[SearchController:: class, "search"]);
+
         Route::post('/accept',[ButtonController:: class, "accept"]);
         Route::post('/block',[ButtonController:: class, "block"]);
     });

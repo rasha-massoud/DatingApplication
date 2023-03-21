@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,5 +54,32 @@ class UserController extends Controller
         return response()->json([
             "users" => $users
         ]);
+    }
+
+    function profile(Request $request){
+        $user_id = $request->user_id;
+        $optional_profile1 = $request->optional_profile1;
+        $optional_profile2 = $request->optional_profile2;
+        $optional_profile3 = $request->optional_profile3;
+        $response=[];
+
+        $userProfiles_exists = profile::where('user_id', $request->user_id)->first();
+        if ($userProfiles_exists){
+            $profile= profile::where('user_id', $user_id)->first();
+        }
+        else{
+            $profile= new profile;
+        }
+        $profile->user_id = $request->user_id;
+        $profile->optional_profile1 = $request->optional_profile1;
+        $profile->optional_profile2 = $request->optional_profile2;
+        $profile->optional_profile3 = $request->optional_profile3;
+
+        $profile->save();
+        $response['status'] = "success";
+
+        return response()->json([
+            'status' => $response['status']
+        ]);   
     }
 }
