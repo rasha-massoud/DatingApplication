@@ -387,5 +387,36 @@ workshop_pages.load_profile = async () => {
     });
 }
 
-workshop_pages.load_favorites = async () => { }
+workshop_pages.load_favorites = async () => { 
+    window.onload = function () {
+        const categories = document.getElementById("ItemsRowsGrouping")
+
+        const get_favoriteList_url = workshop_pages.base_url + "favoriteList";
+        const api_token = localStorage.getItem('token');
+
+        const favListformData = new FormData();
+        const user_id = localStorage.getItem('user_id');
+        profileformData.append('user_id', user_id);
+
+        workshop_pages.postAPI(get_favoriteList_url, favListformData, api_token)
+            .then((response) => {
+                const users = response.data.favorites;
+                users.forEach(user => {
+                    const html = `
+                    <div class="ItemsRowsGrouping">
+                        <div class="Items">
+                            <h3 class="rowData" id="biographyGet">${user.biography}</h3>
+                            <h3 class="rowData" id="locationGet">${user.location}</h3>
+                            <h3 class="rowData" id="dobGet">${user.dob}</h3>
+                        </div>
+                    </div>
+                    `;
+                    categories.insertAdjacentHTML("beforeend", html);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+}
 
