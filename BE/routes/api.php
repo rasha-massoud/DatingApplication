@@ -26,7 +26,7 @@ Route::group(["prefix" => "v0.0.0"], function(){
         Route::post('/accept',[ButtonController:: class, "accept"]);
         Route::post('/block',[ButtonController:: class, "block"]);
 
-        Route::get('/blocklist',[ListController:: class, "blocklist"]);
-        Route::get('/favoriteList',[ListController:: class, "favoriteList"]);        
+        Route::post('/blocklist',[ListController:: class, "blocklist"]);
+        Route::post('/favoriteList',[ListController:: class, "favoriteList"]);        
     });
 });
