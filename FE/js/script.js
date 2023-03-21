@@ -386,3 +386,6 @@ workshop_pages.load_profile = async () => {
             });
     });
 }
+
+workshop_pages.load_favorites = async () => { }
+
