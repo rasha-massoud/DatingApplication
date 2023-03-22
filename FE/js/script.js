@@ -464,7 +464,7 @@ workshop_pages.load_blocks = async () => {
 workshop_pages.load_recover = async () => {
     const get_recover_url = workshop_pages.base_url + "recover";
 
-    document.getElementById("update").addEventListener("click", () => {
+    document.getElementById("submit").addEventListener("click", () => {
         const hobby = document.getElementById("hobby").value;
         const dog = document.getElementById("dog").value;
 
@@ -475,9 +475,7 @@ workshop_pages.load_recover = async () => {
         recoverformData.append('hobby', hobby);
         recoverformData.append('dog', dog);
 
-        const api_token = localStorage.getItem('token');
-
-        workshop_pages.postAPI(get_recover_url, recoverformData, api_token)
+        workshop_pages.postAPI(get_recover_url, recoverformData)
             .then(response)
             .catch(error => {
                 console.error(error);
