@@ -109,4 +109,41 @@ class UserController extends Controller
             'status' => $response['status']
         ]);   
     }
+
+    function forgetPass(Request $request){
+        $email = $request->email;
+        $hobby = $request->hobby;
+        $dog = $request->dog;
+        $response=[];
+
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            $user_id = $user->id;
+
+            $recover_password = RecoverPassword::where('user_id', $user_id)->first();
+
+            if ($recover_password) {
+                $new_password = 'new_password';
+
+                $user->password = bcrypt($new_password);
+                $user->save();
+                $response['status'] = "success";
+                $response['clarity'] = "Password was reset";
+
+            } else {
+                $response['status'] = "fails";
+                $response['clarity'] = "Option not configired!";
+            }
+        } else {
+            $response['status'] = "fails";
+            $response['clarity'] = "User not found!";
+        }
+        
+
+        return response()->json([
+            'status' => $response['status'],
+            'clarity' => $response['clarity']
+        ]);   
+    }
 }
