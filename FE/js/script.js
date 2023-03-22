@@ -483,3 +483,25 @@ workshop_pages.load_recover = async () => {
     });
 }
 
+workshop_pages.load_forgetPass = async () => {
+    const get_forget_url = workshop_pages.base_url + "forget";
+
+    document.getElementById("submit").addEventListener("click", () => {
+        const email = document.getElementById("email").value;
+        const hobby = document.getElementById("hobby").value;
+        const dog = document.getElementById("dog").value;
+
+        const recoverformData = new FormData();
+        const user_id = localStorage.getItem('user_id');
+
+        recoverformData.append('email', email);
+        recoverformData.append('hobby', hobby);
+        recoverformData.append('dog', dog);
+
+        workshop_pages.postAPI(get_forget_url, recoverformData)
+            .then(response)
+            .catch(error => {
+                console.error(error);
+            });
+    });
+}
