@@ -468,6 +468,8 @@ workshop_pages.load_recover = async () => {
         const hobby = document.getElementById("hobby").value;
         const dog = document.getElementById("dog").value;
 
+        const api_token = localStorage.getItem('token');
+
         const recoverformData = new FormData();
         const user_id = localStorage.getItem('user_id');
 
@@ -475,7 +477,7 @@ workshop_pages.load_recover = async () => {
         recoverformData.append('hobby', hobby);
         recoverformData.append('dog', dog);
 
-        workshop_pages.postAPI(get_recover_url, recoverformData)
+        workshop_pages.postAPI(get_recover_url, recoverformData, api_token)
             .then(response)
             .catch(error => {
                 console.error(error);
