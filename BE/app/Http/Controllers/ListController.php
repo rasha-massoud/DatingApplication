@@ -31,7 +31,7 @@ class ListController extends Controller
         ]);
     }
 
-    function notificationlist(Request $request){
+    function notificationList(Request $request){
         $notifications = Notification::where('user_id', $request->user_id)->get();
         $UserIdsNotifications = $notifications->pluck('on_user_id');
         $userNotifications = User::whereIn('id', $UserIdsNotifications)->get();        

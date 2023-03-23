@@ -31,6 +31,6 @@ Route::group(["prefix" => "v0.0.0"], function(){
 
         Route::post('/blockList',[ListController:: class, "blocklist"]);
         Route::post('/favoriteList',[ListController:: class, "favoriteList"]);      
-        Route::post('/notificationlist',[ListController:: class, "notificationlist"]);          
+        Route::post('/notificationList',[ListController:: class, "notificationList"]);          
     });
 });

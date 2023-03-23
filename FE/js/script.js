@@ -505,3 +505,44 @@ workshop_pages.load_forgetPass = async () => {
             });
     });
 }
+
+workshop_pages.load_notification = async () => {
+    window.onload = function () {
+        const categories = document.getElementById("ItemsRowsGrouping")
+
+        const get_notificationList_url = workshop_pages.base_url + "notificationList";
+        const api_token = localStorage.getItem('token');
+
+        const notificationListformData = new FormData();
+        const user_id = localStorage.getItem('user_id');
+        notificationListformData.append('user_id', user_id);
+
+        workshop_pages.postAPI(get_notificationList_url, notificationListformData, api_token)
+            .then((response) => {
+                console.log(response);
+                const notifications = response.data.notifications;
+                const userNotifications = response.data.userNotifications;
+
+                const combinedNotifications = notifications.map((notification, index) => Object.assign({}, notification, userNotifications[index]));
+
+                combinedNotifications.forEach(combinedNotification => {
+                    const html = `
+                        <div class="Items">
+                            <img src="${combinedNotification.profile}" id="imageGet" />
+                            <h2 class="rowData" id="nameGet">${combinedNotification.name}</h2>
+                            <h2 class="rowData" id="emailGet">${combinedNotification.email}</h2>
+                            <h2 class="rowData" id="phoneNumberGet">${combinedNotification.phone_number}</h2>
+                            <h2 class="rowData" id="biographyGet">${combinedNotification.biography}</h2>
+                            <h2 class="rowData" id="locationGet">${combinedNotification.location}</h2>
+                            <h2 class="rowData" id="dobGet">${combinedNotification.dob}</h2>
+                            <h2 class="rowData" id="actionGet">${combinedNotification.action}</h2>
+                        </div>
+                `;
+                    categories.insertAdjacentHTML("beforeend", html);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+}
