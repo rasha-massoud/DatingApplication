@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Block;
 use App\Models\Favorite;
+use App\Models\Notification;
 
 class ListController extends Controller
 {
@@ -27,6 +28,16 @@ class ListController extends Controller
         return response()->json([
             "favorites" => $favorites,
             "favoriteUsers" => $favoriteUsers
+        ]);
+    }
+
+    function notificationlist(Request $request){
+        $notifications = Notification::where('user_id', $request->user_id)->get();
+        $UserIdsNotifications = $notifications->pluck('on_user_id');
+        $userNotifications = User::whereIn('id', $UserIdsNotifications)->get();        
+        return response()->json([
+            "notifications" => $notifications,
+            "userNotifications" => $userNotifications
         ]);
     }
 }
