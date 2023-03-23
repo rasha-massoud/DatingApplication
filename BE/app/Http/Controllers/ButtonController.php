@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Block;
 use App\Models\Favorite;
 use App\Models\Profile;
+use App\Models\Notification;
 
 class ButtonController extends Controller
 {
@@ -57,9 +58,10 @@ class ButtonController extends Controller
             $favorite= new Favorite;
 
             $favorite->user_id = $request->user_id;
-            $favorite->favorite_user_id = $request->favorite_user_id;
-
+            $favorite->favorite_user_id = $request->favorite_user_id;   
             $favorite->save();
+
+
             $response['status'] = "success";
         }
         
