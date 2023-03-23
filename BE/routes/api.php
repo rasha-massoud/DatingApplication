@@ -15,12 +15,13 @@ Route::group(["prefix" => "v0.0.0"], function(){
     Route::post('/logout',[AuthController:: class, "logout"]);
     Route::post('/refresh',[AuthController:: class, "refresh"]);
     
+    Route::post('/forget',[UserController:: class, "forgetPass"]);        
+
     Route::group(["middleware" => ["auth:api"]], function(){
         Route::post('/users',[UserController:: class, "getAllUsers"]);
         Route::post('/edit',[UserController:: class, "edit"]);
         Route::post('/profile',[UserController:: class, "profile"]);
         Route::post('/recover',[UserController:: class, "recover"]);        
-        Route::post('/forget',[UserController:: class, "forgetPass"]);        
 
         Route::post('/filter',[SearchController:: class, "filter"]);
         Route::post('/search',[SearchController:: class, "search"]);

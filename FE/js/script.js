@@ -501,7 +501,9 @@ workshop_pages.load_forgetPass = async () => {
         recoverformData.append('dog', dog);
 
         workshop_pages.postAPI(get_forget_url, recoverformData)
-            .then(response)
+            .then(response => {
+                
+            })
             .catch(error => {
                 console.error(error);
             });
