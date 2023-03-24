@@ -36,11 +36,11 @@ class UserController extends Controller
             if ($email_exists) {
                 $user = User::where('email', $email)->first();
                 $user->email = $request->email;
-                $user->phone_number = $phone_number;
-                $user->password = Hash::make($password);
-                $user->location = $location;
-                $user->biography = $biography;
-                $user->profile = $profile;
+                $user->phone_number = $request->phone_number;
+                $user->password = Hash::make($request->password);
+                $user->location = $request->location;
+                $user->biography = $request->biography;
+                $user->profile = $request->profile;
                 $user->save();
                 
                 $response['status'] = "success";

@@ -140,7 +140,8 @@ workshop_pages.load_edit = async () => {
             editformData.append('profile', profile);
             const api_token = localStorage.getItem('token');
             workshop_pages.postAPI(get_edit_url, editformData, api_token)
-                .then(response)
+                .then(response=>{
+                })
                 .catch(error => {
                     console.error(error);
                 });
@@ -502,7 +503,7 @@ workshop_pages.load_forgetPass = async () => {
 
         workshop_pages.postAPI(get_forget_url, recoverformData)
             .then(response => {
-                
+
             })
             .catch(error => {
                 console.error(error);
